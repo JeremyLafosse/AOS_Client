@@ -1,15 +1,20 @@
-var client = angular.module('myApp', [
+angular.module('aos', [
   'ngRoute',
   'ngStorage',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', '$httpProvider', '$qprovider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+  'aos.FormCtrl',
+//'aos.userController'
+ 'aos.logoutController'
+]).config(['$locationProvider', '$routeProvider', '$httpProvider', '$qProvider', function($locationProvider, $routeProvider, $qProvider, $http) {
   
-  $routeProvider.when('/', {
-        templateUrl: "user.html",
-controller: "userController"
-});
+    $locationProvider.hashPrefix('');
+   
+    $routeProvider.when('/', {
+          templateUrl: "form.html",
+            controller: "FormCtrl"
+    }).when('/user', {
+          templateUrl: "user.html",
+            controller: "logoutController"
+        });
 
-  $routeProvider.otherwise({redirectTo: '/'});
-}])();
+    $routeProvider.otherwise({redirectTo: '/'});
+}]);
