@@ -6,9 +6,9 @@ angular.module('aos.FormCtrl', ['ngRoute']).controller('FormCtrl', function($sco
                         method: "POST",
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param($scope.form)
-                    }).success(function(response, status, headers, config) {
-                        //store token value
-                        localStorage.setItem("token",'response.data.token');
+                    }).then(function(response) {
+                        console.log(response.data);
+                        localStorage.setItem("token",response.data.token);
                        
                         $location.url('/user');
                     }).error(function(data, status, headers, config) {
